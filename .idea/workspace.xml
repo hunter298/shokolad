@@ -2,7 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e377a55c-4531-4974-abba-1b10c604fefd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/config/database.yml.sample" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/categories/_form.html.slim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/categories/index.html.slim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/categories/new.html.slim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/categories/show.html.slim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/shared/_errors.html.slim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spec/controllers/categories_controller_spec.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spec/features/category/create_spec.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spec/models/user_spec.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spec/support/controller_helpers.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spec/support/feature_helpers.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shokolad.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shokolad.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.slim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/application.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/application.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/environments/development.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/environments/development.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/rails_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/rails_helper.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +45,12 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/config" />
+    <property name="nodejs_package_manager_path" value="yarn" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/config" />
+    </key>
   </component>
   <component name="RunManager" selected="Rails.Development: shokolad">
     <configuration name="Development: shokolad" type="RailsRunConfigurationType" factoryName="Rails">
@@ -135,11 +160,29 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1603992946320</updated>
-      <workItem from="1603992949958" duration="315000" />
+      <workItem from="1603992949958" duration="11531000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="646" y="355" width="674" height="396" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1603993201003">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="646" y="355" width="674" height="396" key="#com.intellij.fileTypes.FileTypeChooser/67.27.1853.1053@67.27.1853.1053" timestamp="1603993201003" />
+    <state x="684" y="291" width="618" height="522" key="find.popup" timestamp="1603993366075">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="684" y="291" width="618" height="522" key="find.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1603993366075" />
+    <state x="657" y="253" key="run.anything.popup" timestamp="1604007555022">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="657" y="253" key="run.anything.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1604007555022" />
+    <state x="656" y="257" width="672" height="678" key="search.everywhere.popup" timestamp="1604008916117">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="656" y="257" width="672" height="678" key="search.everywhere.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1604008916117" />
   </component>
 </project>

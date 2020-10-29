@@ -1,0 +1,5 @@
+- if can? :create, Category
+  = link_to 'Create category', new_category_path
+
+- @categories.each do |category|
+  p = category.name
