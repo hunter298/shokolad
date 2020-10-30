@@ -1,6 +1,21 @@
 = form_with model: @category, local: true do |form|
-  p = form.label :name
-  p = form.text_field :name, placeholder: 'Category name'
-  p = form.label :image
-  p = form.file_field :image
+  .category-name
+    = form.label :name
+    br
+    = form.text_field :name, placeholder: 'Category name'
+  .category-image
+    = form.label :image
+    br
+    = form.file_field :image
+  br
+  .properties
+    h3 Properties:
+    #properties
+      = form.fields_for :properties do |property|
+        = render 'property_fields', f: property
+      .links
+        = link_to_add_association 'add property', form, :properties
+  br
   p = form.submit
+
+p = link_to '<< Back', categories_path

@@ -1,0 +1,6 @@
+.nested-fields
+  .property-name
+    = f.label :name, 'Property name'
+    br
+    = f.text_field :name, placeholder: 'Property name'
+  = link_to_remove_association 'remove property', f

@@ -7,6 +7,7 @@ class CategoriesController < ApplicationController
   def new
     authorize! :create, Category
     @category = Category.new
+    @category.properties.build
   end
 
   def create
@@ -28,6 +29,6 @@ class CategoriesController < ApplicationController
   private
 
   def category_params
-    params.require(:category).permit(:name, :image)
+    params.require(:category).permit(:name, :image, properties_attributes: [:id, :name, :_destroy])
   end
 end
