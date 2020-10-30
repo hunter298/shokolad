@@ -1,0 +1,9 @@
+.col-12.col-md-3.m-3
+  .card style='width: 18rem;'
+    - if category.image.attached?
+      = image_tag category.image, class: 'card-img-top'
+    - else
+      = image_tag 'tshirt.jpg', class: 'card-img-top'
+    .card-body
+      = link_to category.name, category
+

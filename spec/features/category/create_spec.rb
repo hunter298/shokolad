@@ -5,7 +5,7 @@ in order to divide products for easier search for clients,
 as an administrator
 i'd like to be able to create a category
 } do
-  given(:user) { create(:user) }
+  given(:user) { create(:user, admin: true) }
 
   context 'admin' do
     background do
@@ -29,6 +29,14 @@ i'd like to be able to create a category
       click_on 'Create'
 
       expect(page).to have_content "Name can't be blank"
+    end
+
+    scenario 'tries to add category image during creation' do
+      fill_in 'Name', with: 'Test category name'
+      attach_file 'Image', "#{Rails.root}/spec/support/uploads/tshirt.jpeg"
+      click_on 'Create'
+
+      expect(page).to have_css("img[src*='tshirt.jpeg']")
     end
   end
 

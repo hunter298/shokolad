@@ -1,5 +1,9 @@
-- if can? :create, Category
-  = link_to 'Create category', new_category_path
+.container
+  .row
+    .col-12
+      - if can? :create, Category
+        p = link_to 'Create category', new_category_path
 
-- @categories.each do |category|
-  p = category.name
+.container
+  .row.justify-content-start
+    = render @categories
