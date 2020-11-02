@@ -1,0 +1,21 @@
+= form_with model: [@category, @product], local: true do |form|
+  .product-name
+    = form.label :name
+    br
+    = form.text_field :name, placeholder: 'Product name'
+  .product-category
+    =form.label :category
+    = form.collection_select :category_id, Category.all, :id, :name
+  .category-image
+    = form.label :images
+    br
+    = form.file_field :images, multiple: true
+  #properties
+    = form.fields_for :product_properties do |pp|
+      = render 'product_property_fields', f: pp
+    .links
+      = link_to_add_association 'add property value', form, :product_properties
+  br
+  p = form.submit
+
+p = link_to '<< Back', category_path(@category)

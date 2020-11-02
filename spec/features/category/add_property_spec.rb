@@ -13,12 +13,20 @@ i'd like to be able to add properties to category of product
     click_link 'Create category'
   end
 
-  scenario 'addin property during creation of category' do
+  scenario 'admin add property during creation of category' do
     fill_in 'Name', with: 'Test category name'
     fill_in 'Property name', with: 'Size'
 
     click_on 'Create'
     expect(page).to have_content 'Category successfully created!'
-    expect(page).to have_content 'Size'
+    expect(Category.last.properties.last.name).to eq 'Size'
+  end
+
+  scenario 'admin create category without property' do
+    fill_in 'Name', with: 'Test category name'
+
+    click_on 'Create'
+    expect(page).to have_content 'Category successfully created!'
+    expect(Category.last.properties.length).to eq 0
   end
 end

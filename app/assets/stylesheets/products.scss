@@ -1,0 +1,21 @@
+.owl-carousel {
+  border-style: double;
+}
+
+.owl-carousel .item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.owl-carousel .item img {
+  height: 300px;
+
+}
+
+.owl-carousel .owl-item img {
+  width: auto !important;
+}
+
+.hidden {
+  display: none;
+}

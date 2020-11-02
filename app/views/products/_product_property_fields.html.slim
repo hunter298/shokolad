@@ -1,0 +1,7 @@
+.nested-fields
+  .property-value
+    = f.label :property_id, 'Properties'
+    = f.collection_select :property_id, @category.properties, :id, :name
+    = f.label :value
+    = f.text_field :value
+  = link_to_remove_association 'remove property value', f
