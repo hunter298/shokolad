@@ -1,7 +1,10 @@
-.nested-fields
-  .property-value
-    = f.label :property_id, 'Properties'
-    = f.collection_select :property_id, @category.properties, :id, :name
-    = f.label :value
-    = f.text_field :value
-  = link_to_remove_association 'remove property value', f
+.product-input-group.col-md-10
+  .nested-fields.row
+    .property.col-md-3
+      = f.label :property_id, 'Properties'
+      = f.collection_select :property_id, @category.properties, :id, :name, {}, { class: 'form-control' }
+    .value.col-md-3
+      = f.label :value
+      = f.text_field :value, class: 'form-control'
+    .value.col-md-3.align-self-end
+      = link_to_remove_association 'remove property value', f, {class: 'btn btn-dark'}

@@ -1,21 +1,24 @@
 = form_with model: [@category, @product], local: true do |form|
-  .product-name
-    = form.label :name
-    br
-    = form.text_field :name, placeholder: 'Product name'
-  .product-category
-    =form.label :category
-    = form.collection_select :category_id, Category.all, :id, :name
-  .category-image
-    = form.label :images
-    br
-    = form.file_field :images, multiple: true
+  .product-input-group.col-md-10
+    .product-name.form-group.col-md-6
+      = form.label :name
+      span style="color:red;font-weight:bold" *
+      br
+      = form.text_field :name, placeholder: 'Product name', class: 'form-control'
+    .product-category.form-group.col-md-6
+      = form.label :category
+      = form.collection_select :category_id, Category.all, :id, :name, {}, { class: 'form-control' }
+  .product-input-group.col-md-10
+    .category-image.custom-file.col-md-6
+      = form.file_field :images, multiple: true, class: 'custom-file-input'
+      = form.label :images, class: 'custom-file-label'
   #properties
     = form.fields_for :product_properties do |pp|
       = render 'product_property_fields', f: pp
-    .links
-      = link_to_add_association 'add property value', form, :product_properties
+    .links.col-12
+      = link_to_add_association 'add property value', form, :product_properties, class: 'btn btn-secondary'
   br
-  p = form.submit
+  .col-12
+  = form.submit class: 'btn btn-primary m-3'
 
 p = link_to '<< Back', category_path(@category)
