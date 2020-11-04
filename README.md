@@ -1,24 +1,12 @@
-# README
+# Shokolad
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Project is dedicated to online store of products with images of artst N works. The main purpose of website is deirect sales, as well as promotion of visual content created by artist. Thats is achieved through possibility of commenting and distributing materials in social media. The division of user into registered and unreistered customers is assumed.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Following entities are assumed:
+ - customer
+ - admin
+ - category
+ - product
+ - cart
+ - order
+ - payment
