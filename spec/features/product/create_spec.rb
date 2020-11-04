@@ -7,18 +7,21 @@ i'd like to be able to create a product of certain category
 } do
   given(:user) { create(:user, admin: true) }
   given(:category) { create(:category) }
+  given(:other_category) { create(:category) }
 
   context 'admin' do
     background do
+      other_category.properties.create(name: 'property 1')
+      other_category.properties.create(name: 'property 2')
       sign_in(user)
 
       visit category_path(category)
       click_on 'Add product'
-
     end
 
     scenario 'tries to add product with valid data' do
       fill_in 'Name', with: 'Test product name'
+      fill_in 'Description', with: 'Test product description'
       click_on 'Create'
 
       expect(page).to have_content 'Product successfully added!'
@@ -41,6 +44,12 @@ i'd like to be able to create a product of certain category
 
       expect(page).to have_css("img[src*='red.jpeg']")
       expect(Product.last.images.count).to eq 3
+    end
+
+    scenario 'tries to change category of product', js: true do
+      page.select other_category.name, from: 'product_category_id'
+
+      expect(page).to have_select('Properties', options: ['property 1', 'property 2'])
     end
   end
 

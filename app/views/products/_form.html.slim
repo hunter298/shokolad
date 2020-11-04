@@ -7,11 +7,15 @@
       = form.text_field :name, placeholder: 'Product name', class: 'form-control'
     .product-category.form-group.col-md-6
       = form.label :category
+      span style="color:red;font-weight:bold" *
       = form.collection_select :category_id, Category.all, :id, :name, {}, { class: 'form-control' }
   .product-input-group.col-md-10
-    .category-image.custom-file.col-md-6
+    .product-description.form-group.col-md-6
+      = form.label :description
+      = form.text_area :description, class: 'form-control'
+    .product-image.custom-file.col-md-6
       = form.file_field :images, multiple: true, class: 'custom-file-input'
-      = form.label :images, class: 'custom-file-label'
+      = form.label :images, class: 'custom-file-label ml-3'
   #properties
     = form.fields_for :product_properties do |pp|
       = render 'product_property_fields', f: pp

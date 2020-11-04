@@ -6,4 +6,4 @@
       = image_tag 'no_image.jpg', class: "card-img-top"
     .card-body
       h5 class="card-title" = link_to product.name, product_path(product)
-      p class="card-text" Some truncated explanation of product
+      p class="card-text" = truncate(product.description, length: 25)

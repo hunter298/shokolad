@@ -3,7 +3,19 @@ require 'rails_helper'
 RSpec.describe ProductsController, type: :controller do
   let(:admin) { create(:user, admin: true) }
   let(:category) { create(:category) }
-  let!(:product) { create(:product, category: category) }
+  let(:products) { create_list(:product, 3, category: category) }
+
+  describe 'GET #index' do
+    before { get :index }
+
+    it 'populates array of all products' do
+      expect(assigns(:products)).to match_array(products)
+    end
+
+    it 'renders index view' do
+      expect(response).to render_template :index
+    end
+  end
 
   describe 'GET #new' do
     context 'by admin' do
@@ -64,7 +76,7 @@ RSpec.describe ProductsController, type: :controller do
   end
 
   describe 'GET #show' do
-    before { get :show, params: { id: product } }
+    before { get :show, params: { id: products.first } }
 
     it 'renders show view' do
       expect(response).to render_template :show

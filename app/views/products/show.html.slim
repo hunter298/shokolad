@@ -20,6 +20,8 @@
         ul
         - @product.product_properties.where(property: property).each do |pp|
           li = pp.value
+    .col-12
+      p = @product.description
 
   .row
     .col-12

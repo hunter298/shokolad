@@ -1,5 +1,5 @@
 .product-input-group.col-md-10
-  .nested-fields.row
+  .nested-fields.row.ml-1
     .property.col-md-3
       = f.label :property_id, 'Properties'
       = f.collection_select :property_id, @category.properties, :id, :name, {}, { class: 'form-control' }

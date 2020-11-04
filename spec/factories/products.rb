@@ -5,6 +5,7 @@ FactoryBot.define do
 
   factory :product do
     name { generate(:product_name) }
+    description { 'Product test description' }
     category { create :category }
 
     trait :no_name do

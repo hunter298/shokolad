@@ -1,0 +1,8 @@
+.row.justify-content-center
+  .col-12.my-3
+    - if notice
+      .alert.alert-primary.notice role="alert"
+        = notice
+    - if alert
+      .alert.alert-danger.alert role="alert"
+        =alert
