@@ -15,11 +15,14 @@
               = image_tag image
 
     .col-12.col-sm-6.col-md-8
-      - product.category.properties.each do |property|
-        h2 = "#{property.name}:"
-        ul
-        - product.product_properties.where(property: property).each do |pp|
-          li = pp.value
+      = form_with url: product_cart_items_path(product), local: true do |form|
+        - product.category.properties.each do |property|
+          h2 = "#{property.name}:"
+          = form.collection_select "properties[]",
+                  product.product_properties.where(property: property),
+                  :id,
+                  :value
+        = form.submit
     .col-12
       p = product.description
 

@@ -25,5 +25,6 @@ class Ability
 
   def guest_abilities
     can :read, :all
+    can :create, CartItem
   end
 end

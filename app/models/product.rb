@@ -2,6 +2,7 @@ class Product < ApplicationRecord
   belongs_to :category
   has_many :product_properties, dependent: :destroy
   has_many :properties, through: :product_properties
+  has_many :cart_items, dependent: :destroy
 
   has_many_attached :images
 

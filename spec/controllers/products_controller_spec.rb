@@ -81,5 +81,9 @@ RSpec.describe ProductsController, type: :controller do
     it 'renders show view' do
       expect(response).to render_template :show
     end
+
+    it 'assigns a new cart item' do
+      expect(assigns(:cart_item)).to be_a_new(CartItem)
+    end
   end
 end
