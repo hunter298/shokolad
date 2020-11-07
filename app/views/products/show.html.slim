@@ -1,28 +1,28 @@
 .container
   .row
-    h1 = @product.name
+    h1 = product.name
   .row
     .col-12.col-sm-6.col-md-4
       .owl-carousel
         .item
-          - if @product.images.attached?
-            = image_tag @product.images.first
+          - if product.images.attached?
+            = image_tag product.images.first
           - else
             = image_tag 'no_image.jpg'
-        - if @product.images.count > 1
-          - @product.images.drop(1).each do |image|
+        - if product.images.count > 1
+          - product.images.drop(1).each do |image|
             .item
               = image_tag image
 
     .col-12.col-sm-6.col-md-8
-      - @product.category.properties.each do |property|
+      - product.category.properties.each do |property|
         h2 = "#{property.name}:"
         ul
-        - @product.product_properties.where(property: property).each do |pp|
+        - product.product_properties.where(property: property).each do |pp|
           li = pp.value
     .col-12
-      p = @product.description
+      p = product.description
 
   .row
     .col-12
-      = link_to '<< Back', category_path(@product.category)
+      = link_to '<< Back', category_path(product.category)

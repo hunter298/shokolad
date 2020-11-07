@@ -28,16 +28,12 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
-# authentication
 gem 'devise'
 
-# templates
 gem 'slim-rails'
 
-# authorization
 gem 'cancancan'
 
-# nested forms handling
 gem 'cocoon'
 
 group :development, :test do
@@ -67,7 +63,6 @@ group :test do
 
   gem "shoulda-matchers"
 
-  #save_and_open_page
   gem 'launchy'
 end
 

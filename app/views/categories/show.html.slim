@@ -1,10 +1,10 @@
-h2 = @category.name
+h2 = category.name
 
 - if can? :create, Product
-  p = link_to 'Add product', new_category_product_path(@category)
+  p = link_to 'Add product', new_category_product_path(category)
 
 .container.d-flex.flex-column.justify-content-start
   .row
-    = render @category.products
+    = render category.products
 
 p = link_to '<< Back', categories_path

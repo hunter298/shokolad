@@ -1,25 +1,20 @@
 class ProductsController < ApplicationController
+  authorize_resource
+
   def index
-    authorize! :read, Product
     @products = Product.all
   end
 
   def show
-    authorize! :read, @product
-    @product = Product.find(params[:id])
   end
 
   def new
-    authorize! :create, Product
-    @category = Category.find(params[:category_id])
     @categories = Category.all
-    @product = @category.products.new
+    @product = category.products.new
     @product.product_properties.build
   end
 
   def create
-    authorize! :create, Product
-
     @category = Category.find(params[:product][:category_id])
     @product = Product.new(product_params)
 
@@ -31,6 +26,18 @@ class ProductsController < ApplicationController
   end
 
   private
+
+  def category
+    @category ||= Category.find(params[:category_id])
+  end
+
+  helper_method :category
+
+  def product
+    @product ||= params[:id] ? Product.with_attached_images.find(params[:id]) : Product.new
+  end
+
+  helper_method :product
 
   def product_params
     params.require(:product).permit(:name,
