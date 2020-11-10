@@ -16,6 +16,10 @@
     .product-image.custom-file.col-md-6
       = form.file_field :images, multiple: true, class: 'custom-file-input'
       = form.label :images, class: 'custom-file-label ml-3'
+  .product-input-group.col-md-10
+    .product-price.form-group.col-md-6
+      = form.label :price
+      = form.number_field :price, class: 'form-control'
   #properties
     = form.fields_for :product_properties do |pp|
       = render 'product_property_fields', f: pp

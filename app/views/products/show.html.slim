@@ -1,7 +1,5 @@
 .container
   .row
-    h1 = product.name
-  .row
     .col-12.col-sm-6.col-md-4
       .owl-carousel
         .item
@@ -15,16 +13,24 @@
               = image_tag image
 
     .col-12.col-sm-6.col-md-8
-      = form_with url: product_cart_items_path(product), local: true do |form|
-        - product.category.properties.each do |property|
-          h2 = "#{property.name}:"
-          = form.collection_select "properties[]",
-                  product.product_properties.where(property: property),
-                  :id,
-                  :value
-        = form.submit
+      .row
+        .col-12
+          h1 = product.name
+      .row
+        .col-12
+          = form_with url: product_cart_items_path(product), type: :json, id: 'add-to-cart' do |form|
+            - product.category.properties.each do |property|
+              .form-group
+                = label_tag property.name
+                = form.collection_select "properties[]",
+                        product.product_properties.where(property: property),
+                        :id,
+                        :value,
+                        {}, { class: 'form-control' }
+            p = form.submit 'Add to cart', class: 'btn btn-primary'
     .col-12
-      p = product.description
+      .border.border-info.rounded.my-3.p-3
+        = product.description
 
   .row
     .col-12

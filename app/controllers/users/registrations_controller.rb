@@ -61,10 +61,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
   def add_cart
-    if cookies[:cart]
-      resource.cart = Cart.where(cookies: cookies[:cart]).first
-    else
-      resource.create_cart
+    if resource.persisted?
+      if cookies[:cart]
+        resource.cart = Cart.where(cookies: cookies[:cart]).first
+      else
+        resource.create_cart
+      end
     end
   end
 end

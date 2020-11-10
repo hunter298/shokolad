@@ -1,0 +1,10 @@
+h2 Your cart:
+
+.row
+  - @cart.cart_items.each do |cart_item|
+    = render cart_item
+
+.row
+  .col-12.my-2
+    .float-right
+      = @cart.cart_items.sum { |item| item.product.price }

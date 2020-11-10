@@ -1,5 +1,5 @@
 class CartItemsController < ApplicationController
-  before_action :check_cart, only: %i{create}
+  before_action :current_cart, only: %i{create}
 
   authorize_resource
 
@@ -9,23 +9,9 @@ class CartItemsController < ApplicationController
     params[:properties]&.each do |property|
       @cart_item.product_properties << ProductProperty.find(property)
     end
-  end
 
-  private
-
-  def check_cart
-    if current_user
-      if current_user.cart
-        @cart = current_user.cart
-      else
-        @cart = current_user.create_cart
-      end
-    elsif cookies[:cart]
-      @cart = Cart.find_by(cookies: cookies[:cart])
-    else
-      hex = SecureRandom.hex
-      cookies[:cart] = hex
-      @cart = Cart.create(cookies: hex)
+    respond_to do |format|
+      format.json { render json: @cart.cart_items.count }
     end
   end
 

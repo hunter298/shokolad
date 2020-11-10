@@ -11,8 +11,11 @@ i'd like to be able to add products to cart
 
     background { visit product_path(product) }
 
-    scenario 'tries to add product to cart' do
-      expect { click_button 'Add to cart' }.to change(CartItem, :count).by(1)
+    scenario 'tries to add product to cart', js: true do
+      click_button 'Add to cart'
+      expect(page).to have_css("#cart-count", text: '1', visible: false) #not visible due to bootstrap collaspsible menu
+      click_button 'Add to cart'
+      expect(page).to have_css("#cart-count", text: '2', visible: false) #not visible due to bootstrap collaspsible menu
     end
   end
 end

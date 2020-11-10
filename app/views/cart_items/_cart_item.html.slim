@@ -1,0 +1,12 @@
+.col-12.my-2.rounded.bg-light
+  - if cart_item.product.images.attached?
+    = image_tag cart_item.product.images.first, class: 'rounded-circle border border-secondary', size: '50x50', style: "vertical-align:middle;"
+  - else
+    = image_tag 'no_image.jpg', class: 'rounded-circle border border-secondary', size: '50x50', style: "vertical-align:middle;"
+  span class="ml-3"
+    = cart_item.product.name
+    - cart_item.product_properties.each do |pp|
+      span class="badge badge-secondary ml-2"
+        = pp.value
+  span class="float-right"
+    = cart_item.product.price

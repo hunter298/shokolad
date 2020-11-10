@@ -14,4 +14,11 @@ $(document).on('turbolinks:load', function() {
             $(".links").html($(data).find(".links").html())
         }})
     })
+
+    $('#add-to-cart').on('ajax:success', function(e) {
+        // let cartItemsNumber = parseInt($("span#cart-count").text()) + 1
+        // console.log(e.detail[0])
+        $("span#cart-count").text(e.detail[0])
+
+    })
 })

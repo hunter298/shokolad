@@ -6,6 +6,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @cart_item = CartItem.new
   end
 
   def new
@@ -43,6 +44,7 @@ class ProductsController < ApplicationController
     params.require(:product).permit(:name,
                                     :category_id,
                                     :description,
+                                    :price,
                                     images: [],
                                     product_properties_attributes: [:id, :property_id, :value, :_destroy])
   end
