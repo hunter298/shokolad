@@ -26,7 +26,7 @@
                         product.product_properties.where(property: property),
                         :id,
                         :value,
-                        {}, { class: 'form-control' }
+                        {}, { class: 'form-control', id: property.name }
             p = form.submit 'Add to cart', class: 'btn btn-primary'
     .col-12
       .border.border-info.rounded.my-3.p-3

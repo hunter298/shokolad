@@ -32,6 +32,6 @@ class Ability
       cart.cookies != @cookies[:cart]
     end
     can :create, CartItem
-
+    can :create, Order
   end
 end

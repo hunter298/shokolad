@@ -1,0 +1,72 @@
+.col-12
+  = form_with model: [current_cart, @order], local: true do |form|
+    .form-row.px-2
+      .form-group.col-md-6
+        .col-12.mb-2
+          = form.label :full_name
+        .col-12.mb-2
+          = form.text_field :full_name, class: 'form-control'
+      .form-group.col-md-6
+        .col-12.mb-2
+          = form.label :phone_number
+        .col-12.mb-2
+          = form.phone_field :phone_number, class: 'form-control'
+    .form-group.px-4
+      = form.label :adress_line1
+      =form.text_field :adress_line1, class: 'form-control'
+    .form-group.px-4
+      = form.label :adress_line2
+      =form.text_field :adress_line2, class: 'form-control'
+    .form-row.px-2
+      .form-group.col-md-4
+        .col-12.mb-2
+          = form.label :city
+        .col-12.mb-2
+          = form.text_field :city, class: 'form-control'
+      .form-group.col-md-4
+        .col-12.mb-2
+          = form.label :region
+        .col-12.mb-2
+          = form.text_field :region, class: 'form-control'
+      .form-group.col-md-4
+        .col-12.mb-2
+          = form.label :country
+        .col-12.mb-2
+          = form.text_field :country, class: 'form-control'
+    .row.px-3
+      .form-group.col-md-6
+        .col-12.mb-2
+          = form.label :delivery_type
+        .row
+          .form-check
+            .col-12.mb-2
+              = form.radio_button :delivery_type, 'Courier', class: 'form-check-input'
+              = form.label :delivery_type, 'Courier', value: 'Courier', class: 'form-check-label'
+            .col-12.mb-2
+              = form.radio_button :delivery_type, 'Delivery service', class: 'form-check-input', checked: true
+              = form.label :delivery_type, 'Delivery service', value: 'Delivery service', class: 'form-check-label'
+            .col-12.mb-2
+              = form.radio_button :delivery_type, 'Self-pickup', class: 'form-check-input'
+              = form.label :delivery_type, 'Self-pickup', value: 'Self-pickup', class: 'form-check-label'
+      .form-group.col-md-6
+        .col-12.mb-2
+          = form.label :payment_type
+        .row
+          .form-check
+            .col-12.mb-2
+              = form.radio_button :payment_type, 'Card', class: 'form-check-input', checked: true
+              = form.label :payment_type, 'Card', value: 'Card', class: 'form-check-label'
+            .col-12.mb-2
+              = form.radio_button :payment_type, 'GooglePay', class: 'form-check-input'
+              = form.label :payment_type, 'GooglePay', value: 'GooglePay', class: 'form-check-label'
+            .col-12.mb-2
+              = form.radio_button :payment_type, 'On delivery', class: 'form-check-input'
+              = form.label :payment_type, 'On delivery', value: 'On delivery', class: 'form-check-label'
+    .list.rounded.border.border-secondary.p-3.m-3
+      = simple_format(@order.items_list)
+      span Total:
+      span class="text-success" = @order.price
+    .form-group.px-4.my-3
+      = form.label :message
+      = form.text_area :message, class: 'form-control'
+    = form.submit 'Place order', class: 'btn btn-primary ml-3'

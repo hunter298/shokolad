@@ -15,24 +15,26 @@ RSpec.describe CartItemsController, type: :controller do
     end
 
     context 'by guest' do
-      it 'creates new entry in database' do
-        expect { post :create, params: {product_id: product} }.to change(CartItem, :count).by(1)
+      it 'creates new entry in database', js: true do
+        expect { post :create, params: {product_id: product}, format: :json }.to change(CartItem, :count).by(1)
       end
 
-      it 'creates new cart with cookies attribute' do
-        expect { post :create, params: {product_id: product} }.to change(Cart, :count).by(1)
+      it 'creates new cart with cookies attribute', js: true do
+        expect { post :create, params: {product_id: product}, format: :json }.to change(Cart, :count).by(1)
         expect(Cart.last.cookies).to_not be_nil
         expect(Cart.last.user_id).to be_nil
       end
 
-      it 'add cart items to cart' do
-        post :create, params: {product_id: product}
-        post :create, params: {product_id: product}
+      it 'add cart items to cart', js: true do
+        post :create, params: {product_id: product}, format: :json
+        post :create, params: {product_id: product}, format: :json
         expect(Cart.last.cart_items.count).to eq 2
       end
 
-      it 'add chosen product properties to associations collection of cart item' do
-        post :create, params: {product_id: product, properties: [product_property.id, other_product_property.id]}
+      it 'add chosen product properties to associations collection of cart item', js: true do
+        post :create,
+             params: {product_id: product, properties: [product_property.id, other_product_property.id]},
+            format: :json
         expect(CartItem.last.product_properties).to match_array [product_property, other_product_property]
       end
     end
@@ -43,23 +45,25 @@ RSpec.describe CartItemsController, type: :controller do
       end
 
       it 'creates new entry in database' do
-        expect { post :create, params: {product_id: product} }.to change(CartItem, :count).by(1)
+        expect { post :create, params: {product_id: product}, format: :json }.to change(CartItem, :count).by(1)
       end
 
       it 'creates new cart with user_id attribute' do
-        expect { post :create, params: {product_id: product} }.to change(Cart, :count).by(1)
+        expect { post :create, params: {product_id: product}, format: :json }.to change(Cart, :count).by(1)
         expect(Cart.last.user_id).to_not be_nil
         expect(Cart.last.cookies).to be_nil
       end
 
       it 'add cart items to cart' do
-        post :create, params: {product_id: product}
-        post :create, params: {product_id: product}
+        post :create, params: {product_id: product}, format: :json
+        post :create, params: {product_id: product}, format: :json
         expect(Cart.last.cart_items.count).to eq 2
       end
 
       it 'add chosen product properties to associations collection of cart item' do
-        post :create, params: {product_id: product, properties: [product_property.id, other_product_property.id]}
+        post :create,
+             params: {product_id: product, properties: [product_property.id, other_product_property.id]},
+             format: :json
         expect(CartItem.last.product_properties).to match_array [product_property, other_product_property]
       end
     end
