@@ -1,0 +1,11 @@
+h1 All orders:
+
+table class="table orders-table"
+  thead
+    tr
+      th scope="col" #
+      th scope="col" Name
+      th scope="col" Phone
+      th scope="col" Price
+  tbody
+    = render @orders

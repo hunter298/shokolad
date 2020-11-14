@@ -11,4 +11,10 @@ Rails.application.routes.draw do
   resources :carts, only: %i{show} do
     resources :orders, only: %i{new create}, shallow: true
   end
+
+  namespace :admin do
+    resources :orders, only: %i{index show edit update}
+  end
+
+  mount ActionCable.server => '/cable'
 end

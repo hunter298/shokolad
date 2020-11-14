@@ -12,9 +12,6 @@ i'd like to be able to checkout my order
 
   background do
     visit product_path(product)
-  end
-
-  scenario 'tries to checkout', js: true do
     page.select(product_properties.last.value, from: property.name)
     click_button 'Add to cart'
 
@@ -22,7 +19,40 @@ i'd like to be able to checkout my order
     find('.navbar-toggler-icon').click
     find('#cart-count').click
     click_link 'Checkout'
+  end
 
+  scenario 'tries to checkout', js: true do
     expect(page).to have_content 'Order review'
+    expect(page).to have_content product.name
+    expect(page).to have_content product.price
+  end
+
+  context 'tries to place order' do
+    scenario 'with valid data', js: true do
+      fill_in 'Full name', with: 'John Brown'
+      fill_in 'Phone number', with: '+1-541-754-3010'
+      click_on 'Place order'
+
+      expect(page).to have_content 'Order placed'
+      expect(page).to have_css('#cart-count', text: '0', visible: false)
+    end
+
+    scenario 'with no data', js: true do
+      fill_in 'Full name', with: ''
+      fill_in 'Phone number', with: ''
+      click_on 'Place order'
+
+      expect(page).to have_content "Full name can't be blank"
+      expect(page).to have_content "Phone number can't be blank"
+    end
+
+    scenario 'with invalid data', js: true do
+      fill_in 'Full name', with: 'text'*100
+      fill_in 'Phone number', with: 'number'
+      click_on 'Place order'
+
+      expect(page).to have_content "Full name is too long"
+      expect(page).to have_content "Phone number is invalid"
+    end
   end
 end
