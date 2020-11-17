@@ -1,0 +1,10 @@
+.row
+  .col-12
+
+    h1 Order review
+    h3 class="float-right" = "total price: #{@order.price}$"
+    span and checkout for purchase
+    hr class="mt-1"
+
+  = render 'shared/errors', resource: @order
+  = render 'form'

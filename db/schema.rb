@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_04_214047) do
+ActiveRecord::Schema.define(version: 2020_11_12_135626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,8 +36,50 @@ ActiveRecord::Schema.define(version: 2020_11_04_214047) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "cart_items", force: :cascade do |t|
+    t.bigint "cart_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "product_id", null: false
+    t.index ["cart_id"], name: "index_cart_items_on_cart_id"
+  end
+
+  create_table "cart_items_product_properties", id: false, force: :cascade do |t|
+    t.bigint "cart_item_id", null: false
+    t.bigint "product_property_id", null: false
+    t.index ["cart_item_id"], name: "index_cart_items_product_properties_on_cart_item_id"
+    t.index ["product_property_id"], name: "index_cart_items_product_properties_on_product_property_id"
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "cookies"
+    t.index ["user_id"], name: "index_carts_on_user_id"
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "full_name", limit: 100, null: false
+    t.string "phone_number", limit: 15, null: false
+    t.string "email", limit: 30
+    t.string "adress_line1", limit: 100
+    t.string "adress_line2", limit: 100
+    t.string "city", limit: 20
+    t.string "region", limit: 20
+    t.string "zip", limit: 20
+    t.string "country", limit: 20
+    t.string "delivery_type", null: false
+    t.string "payment_type", null: false
+    t.decimal "price", precision: 6, scale: 2, null: false
+    t.string "items_list", null: false
+    t.string "message"
+    t.string "status", default: "processing", null: false
+    t.string "payment_status", default: "pending", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -58,6 +100,7 @@ ActiveRecord::Schema.define(version: 2020_11_04_214047) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "description"
+    t.decimal "price", precision: 6, scale: 2, default: "0.0", null: false
     t.index ["category_id"], name: "index_products_on_category_id"
   end
 
@@ -83,6 +126,7 @@ ActiveRecord::Schema.define(version: 2020_11_04_214047) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cart_items", "carts"
   add_foreign_key "product_properties", "products"
   add_foreign_key "product_properties", "properties"
   add_foreign_key "products", "categories"

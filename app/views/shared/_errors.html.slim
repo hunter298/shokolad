@@ -1,7 +1,6 @@
-.row
-  .col-12
-    - if resource&.errors.present?
-      b = "#{pluralize(resource.errors.count, 'error')} detected:"
-      ul
-      - resource.errors.full_messages.each do |error|
-        li = error
+.col-12.my-3
+  - if resource&.errors.present?
+    b = "#{pluralize(resource.errors.count, 'error')} detected:"
+    ul
+    - resource.errors.full_messages.each do |error|
+      li = error

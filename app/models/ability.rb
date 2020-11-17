@@ -4,9 +4,11 @@ class Ability
   include CanCan::Ability
 
   attr_reader :user
+  attr_accessor :cookies
 
   def initialize(user)
     @user = user
+    @cookies = {}
 
     if user
       user.admin? ? admin_abilities : user_abilities
@@ -21,9 +23,15 @@ class Ability
 
   def user_abilities
     guest_abilities
+    can :read, Cart, user_id: user.id
   end
 
   def guest_abilities
     can :read, :all
+    cannot :read, Cart do |cart|
+      cart.cookies != @cookies[:cart]
+    end
+    can :create, CartItem
+    can :create, Order
   end
 end
