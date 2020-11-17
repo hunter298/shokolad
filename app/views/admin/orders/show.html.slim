@@ -1,0 +1,64 @@
+table class="table"
+  tbody
+    tr
+      th scope="row" Order id:
+      td = @order.id
+    tr
+      th scope="row" Total price:
+      td = @order.price
+    tr
+      th scope="row" Ordered items:
+      td = simple_format(@order.items_list)
+    tr
+      th scope="row" Full name:
+      td = @order.full_name
+    tr
+      th scope="row" Phone number:
+      td = @order.phone_number
+    - if @order.email.present?
+      tr
+        th scope="row" Email:
+        td = @order.email
+    tr
+      th scope="row" Adress:
+      td = @order.adress_line1
+    - if @order.adress_line2.present?
+      tr
+        th scope="row"
+        td = @order.adress_line2
+    - if @order.adress_line1.present? || @order.adress_line2.present?
+      tr
+        th scope="row"
+        td = @order.city
+      tr
+        th scope="row"
+        td = @order.region
+      tr
+        th scope="row"
+        td = @order.zip
+      tr
+        th scope="row"
+        td = @order.country
+    tr
+      th scope="row" Delivery type:
+      td = @order.delivery_type
+    tr
+      th scope="row" Payment typee:
+      td = @order.payment_type
+    - if @order.message.present?
+      tr
+        th scope="row" Message:
+        td = @order.message
+
+.col-12
+  = form_with model: [:admin, @order], format: :json do |form|
+    .form-row
+      .form-group.col-md-6
+        = form.label :status
+        = form.collection_select :status, Admin::OrdersController::ORDER_STATUSES, :to_s, :capitalize,
+                {}, { class: 'form-control' }
+      .form-group.col-md-6
+        = form.label :payment_status
+        = form.collection_select :payment_status, Admin::OrdersController::PAYMENT_STATUSES, :to_s, :capitalize,
+                {}, {class: 'form-control'}
+    = form.submit

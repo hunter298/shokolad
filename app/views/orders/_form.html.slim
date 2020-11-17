@@ -4,13 +4,18 @@
       .form-group.col-md-6
         .col-12.mb-2
           = form.label :full_name
+          span style="color:red;" *
         .col-12.mb-2
           = form.text_field :full_name, class: 'form-control'
       .form-group.col-md-6
         .col-12.mb-2
           = form.label :phone_number
+          span style="color:red;" *
         .col-12.mb-2
           = form.phone_field :phone_number, class: 'form-control'
+    .form-group.px-4
+      = form.label :email
+      = form.text_field :email, class: 'form-control'
     .form-group.px-4
       = form.label :adress_line1
       =form.text_field :adress_line1, class: 'form-control'
@@ -37,6 +42,7 @@
       .form-group.col-md-6
         .col-12.mb-2
           = form.label :delivery_type
+          span style="color:red;" *
         .row
           .form-check
             .col-12.mb-2
@@ -51,6 +57,7 @@
       .form-group.col-md-6
         .col-12.mb-2
           = form.label :payment_type
+          span style="color:red;" *
         .row
           .form-check
             .col-12.mb-2

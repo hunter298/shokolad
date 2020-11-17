@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(:full_name, :phone_number, :adress_line1, :adress_line2, :city, :region, :country,
-                                  :delivery_type, :payment_type, :message)
+                                  :delivery_type, :payment_type, :message, :email)
   end
 
   def publish_order

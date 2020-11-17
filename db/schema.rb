@@ -64,14 +64,15 @@ ActiveRecord::Schema.define(version: 2020_11_12_135626) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.string "full_name", null: false
-    t.string "phone_number", null: false
-    t.string "adress_line1"
-    t.string "adress_line2"
-    t.string "city"
-    t.string "region"
-    t.string "zip"
-    t.string "country"
+    t.string "full_name", limit: 100, null: false
+    t.string "phone_number", limit: 15, null: false
+    t.string "email", limit: 30
+    t.string "adress_line1", limit: 100
+    t.string "adress_line2", limit: 100
+    t.string "city", limit: 20
+    t.string "region", limit: 20
+    t.string "zip", limit: 20
+    t.string "country", limit: 20
     t.string "delivery_type", null: false
     t.string "payment_type", null: false
     t.decimal "price", precision: 6, scale: 2, null: false

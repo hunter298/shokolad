@@ -6,4 +6,5 @@ class Order < ApplicationRecord
   validates :phone_number, format: { with: /(\+?\d{1,3}[- ]?)?\(?(\d{3})?\)?[- ]?\d{3}[- ]?\d{2}[- ]?\d{2}/ }
   validates :delivery_type, inclusion: { in: ['Courier', 'Delivery service', 'Self-pickup'] }
   validates :payment_type, inclusion: { in: ['GooglePay', 'Card', 'On delivery'] }
+  validates :price, numericality: { greater_then: 0, less_then: 100000 }
 end

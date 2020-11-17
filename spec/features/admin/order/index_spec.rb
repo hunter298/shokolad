@@ -7,6 +7,7 @@ i'd like to be able to see a list of all orders
 } do
   context 'admin' do
     given(:admin) { create(:user, admin: true) }
+    given!(:orders) { create_list(:order, 3) }
 
     background do
       sign_in(admin)
@@ -15,6 +16,12 @@ i'd like to be able to see a list of all orders
     scenario 'tries to go to orders index page' do
       visit admin_orders_path
       expect(page).to have_content 'All orders'
+      orders.each do |order|
+        expect(page).to have_content(order.id)
+        expect(page).to have_content(order.full_name)
+        expect(page).to have_content(order.phone_number)
+        expect(page).to have_content(order.price)
+      end
     end
   end
 
